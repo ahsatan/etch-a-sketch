@@ -1,0 +1,10 @@
+#grid-container {
+  display: grid;
+  gap: 1px;
+  aspect-ratio: 1 / 1;
+  width: 98vw;
+}
+
+.square {
+  outline: 1px solid black;
+}
