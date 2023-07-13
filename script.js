@@ -19,6 +19,7 @@ function generateGrid(size) {
     const square = document.createElement('div');
     square.classList.add('square');
     square.addEventListener('mouseenter', onHover);
+    square.addEventListener('touchmove', onHover);
     grid_container.appendChild(square);
   }
 }
