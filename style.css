@@ -3,20 +3,33 @@
 }
 
 #menu {
+  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-#color-container {
-  display: flex;
-  gap: 10px;
-  height: 60px;
+#rainbow {
+  height: 30px;
+  width: 80px;
+  background: linear-gradient(to right,
+      red 10%,
+      orange 10% 20%,
+      yellow 20% 30%,
+      green 30% 40%,
+      blue 40% 50%,
+      indigo 50% 60%,
+      violet 60% 70%,
+      brown 70% 80%,
+      black 80% 90%,
+      white 90%);
+  margin-left: 50px;
 }
 
-.square,
-.color {
-  outline: 1px solid black;
+#color-picker {
+  flex-grow: 1;
+  height: 40px;
+  margin-left: 10px;
 }
 
 .color {
@@ -24,32 +37,9 @@
   height: 50px;
 }
 
-#red {
-  background-color: rgb(255, 26, 26);
-}
-
-#orange {
-  background-color: rgb(249, 118, 19);
-}
-
-#yellow {
-  background-color: rgb(255, 227, 56);
-}
-
-#green {
-  background-color: rgb(0, 128, 0);
-}
-
-#blue {
-  background-color: rgb(0, 116, 217);
-}
-
-#indigo {
-  background-color: rgb(75, 0, 130);
-}
-
-#violet {
-  background-color: rgb(153, 51, 153);
+.square,
+#rainbow {
+  outline: 1px solid black;
 }
 
 #grid-container {

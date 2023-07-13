@@ -1,17 +1,50 @@
-const GRID_SIZE = 16;
+const COLORS = [
+  'red',
+  'lightcoral',
+  'darkorange',
+  'orange',
+  'gold',
+  'yellow',
+  'green',
+  'limegreen',
+  'navy',
+  'deepskyblue',
+  'indigo',
+  'blueviolet',
+  'darkmagenta',
+  'violet',
+  'mediumvioletred',
+  'lightpink',
+  'saddlebrown',
+  'black',
+  'white'
+]
 
-let color = 'rgb(0, 0, 0)';
+let color = '#000000';
+let is_rainbow = false;
 
-function changeColor(event) {
-  const style = getComputedStyle(event.target);
-  color = style.backgroundColor;
+function setColor(event) {
+  is_rainbow = false;
+  color = event.target.value;
+}
+
+function setRainbow(event) {
+  is_rainbow = true;
 }
 
 function onHover(event) {
-  this.style.backgroundColor = color;
+  if (is_rainbow) {
+    const random_color = COLORS[Math.floor(Math.random() * COLORS.length)];
+    this.style.backgroundColor = random_color;
+  } else {
+    this.style.backgroundColor = color;
+  }
 }
 
-function generateGrid(size) {
+function generateGrid() {
+  const grid_size = document.querySelector('#grid-size');
+  const size = grid_size.value;
+
   const grid_container = document.querySelector('#grid-container');
   grid_container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
 
@@ -29,18 +62,17 @@ function resetGrid() {
   while (grid_container.firstChild) {
     grid_container.removeChild(grid_container.firstChild);
   }
-}
 
-function replaceGrid(event) {
-  const grid_size = document.querySelector('#grid-size');
-  resetGrid();
-  generateGrid(grid_size.value);
+  generateGrid();
 }
 
 const reset = document.querySelector('#reset');
-reset.addEventListener('click', replaceGrid);
+reset.addEventListener('click', resetGrid);
 
-const colors = document.querySelectorAll('.color');
-colors.forEach(color => color.addEventListener('click', changeColor))
+const color_picker = document.querySelector('#color-picker');
+color_picker.addEventListener('change', setColor);
 
-generateGrid(GRID_SIZE);
+const rainbow = document.querySelector('#rainbow');
+rainbow.addEventListener('click', setRainbow)
+
+generateGrid();
