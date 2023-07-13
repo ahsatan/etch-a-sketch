@@ -1,7 +1,14 @@
 const GRID_SIZE = 16;
 
+let color = 'rgb(0, 0, 0)';
+
+function changeColor(event) {
+  const style = getComputedStyle(event.target);
+  color = style.backgroundColor;
+}
+
 function onHover(event) {
-  this.classList.add('sketched');
+  this.style.backgroundColor = color;
 }
 
 function generateGrid(size) {
@@ -24,19 +31,15 @@ function resetGrid() {
 }
 
 function replaceGrid(event) {
-  let size = Math.floor(+prompt('How many squares across?'));
-
-  if (size === NaN || size <= 0) {
-    size = GRID_SIZE;
-  } else if (size > 100) {
-    size = 100;
-  }
-
+  const grid_size = document.querySelector('#grid-size');
   resetGrid();
-  generateGrid(size);
+  generateGrid(grid_size.value);
 }
 
 const reset = document.querySelector('#reset');
 reset.addEventListener('click', replaceGrid);
+
+const colors = document.querySelectorAll('.color');
+colors.forEach(color => color.addEventListener('click', changeColor))
 
 generateGrid(GRID_SIZE);
