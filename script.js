@@ -23,22 +23,34 @@ const COLORS = [
 let color = '#000000';
 let is_rainbow = false;
 
-function setColor(event) {
+function setColor(e) {
   is_rainbow = false;
-  color = event.target.value;
+  color = e.target.value;
 }
 
-function setRainbow(event) {
+function setRainbow(e) {
   is_rainbow = true;
 }
 
-function onHover(event) {
+function changeColor(element) {
   if (is_rainbow) {
     const random_color = COLORS[Math.floor(Math.random() * COLORS.length)];
-    this.style.backgroundColor = random_color;
+    element.style.backgroundColor = random_color;
   } else {
-    this.style.backgroundColor = color;
+    element.style.backgroundColor = color;
   }
+}
+
+function onHover(e) {
+  changeColor(this);
+}
+
+function onTouch(e) {
+  var x = e.originalEvent.touches[0].pageX;
+  var y = e.originalEvent.touches[0].pageY;
+
+  const element = document.elementFromPoint(xPos, yPos);
+  changeColor(element);
 }
 
 function generateGrid() {
@@ -52,7 +64,7 @@ function generateGrid() {
     const square = document.createElement('div');
     square.classList.add('square');
     square.addEventListener('mouseenter', onHover);
-    square.addEventListener('touchmove', onHover);
+    square.addEventListener('touchmove', onTouch);
     grid_container.appendChild(square);
   }
 }
