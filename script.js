@@ -51,7 +51,7 @@ function generateGrid() {
   for (let i = 0; i < size * size; i++) {
     const square = document.createElement('div');
     square.classList.add('square');
-    square.addEventListener('pointerover', onHover);
+    square.addEventListener('pointerenter', onHover);
     grid_container.appendChild(square);
   }
 }
