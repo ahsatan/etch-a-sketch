@@ -46,8 +46,9 @@ function onHover(e) {
 }
 
 function onTouch(e) {
-  var x = e.originalEvent.touches[0].pageX;
-  var y = e.originalEvent.touches[0].pageY;
+  const last_touch = e.originalEvent.touches.length - 1;
+  var x = e.originalEvent.touches[last_touch].pageX;
+  var y = e.originalEvent.touches[last_touch].pageY;
 
   const element = document.elementFromPoint(xPos, yPos);
   changeColor(element);
