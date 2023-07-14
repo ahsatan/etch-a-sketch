@@ -32,26 +32,13 @@ function setRainbow(e) {
   is_rainbow = true;
 }
 
-function changeColor(element) {
+function onHover(e) {
   if (is_rainbow) {
     const random_color = COLORS[Math.floor(Math.random() * COLORS.length)];
-    element.style.backgroundColor = random_color;
+    this.style.backgroundColor = random_color;
   } else {
-    element.style.backgroundColor = color;
+    this.style.backgroundColor = color;
   }
-}
-
-function onHover(e) {
-  changeColor(this);
-}
-
-function onTouch(e) {
-  const last_touch = e.originalEvent.touches.length - 1;
-  var x = e.originalEvent.touches[last_touch].pageX;
-  var y = e.originalEvent.touches[last_touch].pageY;
-
-  const element = document.elementFromPoint(xPos, yPos);
-  changeColor(element);
 }
 
 function generateGrid() {
@@ -64,8 +51,7 @@ function generateGrid() {
   for (let i = 0; i < size * size; i++) {
     const square = document.createElement('div');
     square.classList.add('square');
-    square.addEventListener('mouseenter', onHover);
-    square.addEventListener('touchmove', onTouch);
+    square.addEventListener('pointerover', onHover);
     grid_container.appendChild(square);
   }
 }
