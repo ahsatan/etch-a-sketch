@@ -33,6 +33,7 @@ function setRainbow(e) {
 }
 
 function onHover(e) {
+  this.releasePointerCapture(e.pointerId);
   if (is_rainbow) {
     const random_color = COLORS[Math.floor(Math.random() * COLORS.length)];
     this.style.backgroundColor = random_color;
