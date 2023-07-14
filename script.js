@@ -33,7 +33,6 @@ function setRainbow(e) {
 }
 
 function onHover(e) {
-  this.releasePointerCapture(e.pointerId);
   if (is_rainbow) {
     const random_color = COLORS[Math.floor(Math.random() * COLORS.length)];
     this.style.backgroundColor = random_color;
@@ -53,6 +52,7 @@ function generateGrid() {
     const square = document.createElement('div');
     square.classList.add('square');
     square.addEventListener('pointerenter', onHover);
+    square.addEventListener('pointerdown', e => e.target.releasePointerCapture(e.pointerId));
     grid_container.appendChild(square);
   }
 }
